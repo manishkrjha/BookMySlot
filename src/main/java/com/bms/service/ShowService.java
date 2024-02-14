@@ -12,5 +12,5 @@ public interface ShowService {
 
     List<String> displayEmptySeats(ShowEntity show);
 
-    String bookTicket(ShowEntity show, String email);
+    String bookTicket(ShowEntity show, String email, int seatNo);
 }

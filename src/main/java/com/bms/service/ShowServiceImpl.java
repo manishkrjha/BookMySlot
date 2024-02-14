@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Service
 public class ShowServiceImpl implements ShowService{
@@ -16,16 +17,17 @@ public class ShowServiceImpl implements ShowService{
     private ShowRepository showRepository;
     @Override
     public List<ShowEntity> searchShows(String movieName, String cityName, Date date) {
-
+        return showRepository.findShowByMovieNameDateAndCity(date, movieName, cityName);
     }
 
     @Override
     public List<String> displayEmptySeats(ShowEntity show) {
-        return null;
+        List<String> seatList = showRepository.findById(show.getId()).get().getSeats();
+        return seatList;
     }
 
     @Override
-    public String bookTicket(ShowEntity show, String email) {
-        return null;
+    public String bookTicket(ShowEntity show, String email, int seatNo) {
+        
     }
 }
