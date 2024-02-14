@@ -1,8 +1,10 @@
 package com.bms.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -11,64 +13,26 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="SHOW")
 public class ShowEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private Date date;
     private Time time;
 
-    private String movieRunning;
-    private String hallName;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private MovieEntity movieRunning;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private HallEntity hallName;
 
     private List<String> seats = new ArrayList<>(Collections.nCopies(50, "available"));
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Time getTime() {
-        return time;
-    }
-
-    public void setTime(Time time) {
-        this.time = time;
-    }
-
-    public String getMovieRunning() {
-        return movieRunning;
-    }
-
-    public void setMovieRunning(String movieRunning) {
-        this.movieRunning = movieRunning;
-    }
-
-    public String getHallName() {
-        return hallName;
-    }
-
-    public void setHallName(String hallName) {
-        this.hallName = hallName;
-    }
-
-    public List<String> getSeats() {
-        return seats;
-    }
-
-    public void setSeats(List<String> seats) {
-        this.seats = seats;
-    }
 }
