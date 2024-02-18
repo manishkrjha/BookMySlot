@@ -7,10 +7,11 @@ import java.util.UUID;
 
 public interface MovieService {
 
-    MovieEntity saveMovie(MovieEntity movie);
+    MovieEntity addMovie(MovieEntity movie);
 
     List<MovieEntity> fetchMovie();
 
+    List<MovieEntity> fetchMovieByAttribute(String attributeName, Object object);
 
     MovieEntity updateMovie(UUID id, MovieEntity newMovie);
 

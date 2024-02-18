@@ -2,12 +2,11 @@ package com.bms.service;
 
 import com.bms.entity.MovieEntity;
 import com.bms.repository.MovieRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class MovieServiceImpl implements MovieService{
@@ -16,7 +15,7 @@ public class MovieServiceImpl implements MovieService{
    private MovieRepository movieRepository;
 
    @Override
-   public MovieEntity saveMovie(MovieEntity movie){
+   public MovieEntity addMovie(MovieEntity movie){
        movieRepository.save(movie);
        return movie;
    }
@@ -25,6 +24,20 @@ public class MovieServiceImpl implements MovieService{
     public List<MovieEntity> fetchMovie(){
        List<MovieEntity> allMovieList = movieRepository.findAll();
        return  allMovieList;
+    }
+
+    @Override
+    public List<MovieEntity> fetchMovieByAttribute(@NotNull String attributeName, Object object) {
+        List<MovieEntity> movieList;
+
+        if(attributeName.equals("genre") || attributeName.equals("movieName")){
+            return movieRepository.fetchMovieByAttribute(attributeName, object);
+        }else if(attributeName.equals("releaseDate")){
+            return movieRepository.fetchMovieByAttribute(attributeName, object);
+        }else{
+            //Returns empty list should be replaced by IllegalArgumentException
+            return  new ArrayList<>();
+        }
     }
 
 
@@ -39,6 +52,7 @@ public class MovieServiceImpl implements MovieService{
            currMovie.setReleaseDate(newMovie.getReleaseDate());
        }
 
+       movieRepository.save(currMovie);
        return currMovie;
     }
 

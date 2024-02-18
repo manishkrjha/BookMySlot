@@ -30,6 +30,5 @@ public class ShowEntity {
     private HallEntity hallName;
 
     private List<String> seats = new ArrayList<>(Collections.nCopies(50, "available"));
-
-
+    
 }

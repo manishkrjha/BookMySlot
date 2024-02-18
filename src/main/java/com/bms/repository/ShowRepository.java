@@ -11,7 +11,5 @@ import java.util.Date;
 
 public interface ShowRepository extends JpaRepository<ShowEntity, UUID> {
 
-    @Query("SELECT s FROM ShowEntity s JOIN s.movieRunning m WHERE s.date = :date AND m.movieName = :movieName")
-    List<ShowEntity> findShowByMovieNameDateAndCity(@Param("date") Date date, @Param("movieName") String movieName, @Param("cityName") String cityName);
 
 }

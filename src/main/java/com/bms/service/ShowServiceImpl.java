@@ -13,21 +13,19 @@ import java.util.UUID;
 @Service
 public class ShowServiceImpl implements ShowService{
 
-    @Autowired
-    private ShowRepository showRepository;
+
     @Override
     public List<ShowEntity> searchShows(String movieName, String cityName, Date date) {
-        return showRepository.findShowByMovieNameDateAndCity(date, movieName, cityName);
+        return null;
     }
 
     @Override
     public List<String> displayEmptySeats(ShowEntity show) {
-        List<String> seatList = showRepository.findById(show.getId()).get().getSeats();
-        return seatList;
+        return null;
     }
 
     @Override
     public String bookTicket(ShowEntity show, String email, int seatNo) {
-        
+        return null;
     }
 }
